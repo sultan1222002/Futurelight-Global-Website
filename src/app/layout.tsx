@@ -9,6 +9,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
   title: "FutureLight Global — Your Future, Our Guidance.",
@@ -31,9 +32,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <SiteFrame>
+          <Header />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </SiteFrame>
         <WhatsAppButton />
       </body>
     </html>

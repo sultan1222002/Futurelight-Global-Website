@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Globe2, Menu, User, X } from "lucide-react";
 import { primaryNav } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -10,32 +10,38 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const scrollContainer = headerRef.current?.parentElement;
+    if (!scrollContainer) return;
+    const onScroll = () => setScrolled(scrollContainer.scrollTop > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    scrollContainer.addEventListener("scroll", onScroll);
+    return () => scrollContainer.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "bg-harbor-950/90 backdrop-blur-md border-b border-harbor-700/60 py-3"
+          ? "border-b border-harbor-700/60 bg-harbor-950/90 py-3 backdrop-blur-md"
           : "bg-transparent py-5"
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-display font-semibold text-lg text-mist-50">
-          <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-beacon-500/15 ring-1 ring-beacon-400/40">
-            <span className="h-2 w-2 rounded-full bg-beacon-400 shadow-[0_0_10px_2px_theme(colors.beacon.400)]" />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 lg:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2 font-display font-semibold text-mist-50">
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-beacon-400/30 bg-beacon-500/15">
+            <Globe2 className="h-4 w-4 text-beacon-400" />
           </span>
-          FutureLight <span className="text-beacon-400 font-normal">Global</span>
+          <span className="hidden sm:inline">
+            FutureLight <span className="font-normal text-beacon-400">Global</span>
+          </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden items-center gap-0.5 rounded-full border border-harbor-700/70 bg-harbor-900/60 p-1 backdrop-blur-sm lg:flex">
           {primaryNav.map((item) => (
             <div
               key={item.label}
@@ -45,7 +51,7 @@ export function Header() {
             >
               <Link
                 href={item.href}
-                className="flex items-center gap-1 rounded-md px-3 py-2 text-sm text-mist-300 transition-colors hover:text-mist-50"
+                className="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm text-mist-300 transition-colors hover:bg-harbor-800/80 hover:text-mist-50"
               >
                 {item.label}
                 {item.children && <ChevronDown className="h-3.5 w-3.5" />}
@@ -66,9 +72,14 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <Link href="#" className="text-sm text-mist-400 hover:text-mist-50 transition-colors">
-            Student Login
+        <div className="hidden shrink-0 items-center gap-2.5 lg:flex">
+          <Link
+            href="#"
+            aria-label="Student Login"
+            title="Student Login"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-harbor-700/70 bg-harbor-900/60 text-mist-300 backdrop-blur-sm transition-colors hover:border-skyway-400/50 hover:text-skyway-300"
+          >
+            <User className="h-4 w-4" />
           </Link>
           <Link
             href="/book-counselling"
@@ -80,7 +91,7 @@ export function Header() {
 
         <button
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          className="lg:hidden text-mist-100"
+          className="text-mist-100 lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -88,7 +99,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-harbor-700 bg-harbor-950 px-5 py-4">
+        <div className="border-t border-harbor-700 bg-harbor-950 px-5 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {primaryNav.map((item) => (
               <Link
