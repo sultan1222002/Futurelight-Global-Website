@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import type { Group } from "three";
-import { BaseSphere, ContinentPoints } from "./base-sphere";
+import { BaseSphere, CloudLayer } from "./base-sphere";
 import { Atmosphere } from "./atmosphere";
 import { FlightArcs } from "./flight-arcs";
 
@@ -12,11 +12,11 @@ export type GlobeVariant = "amber" | "skyway" | "dual";
 
 const palettes: Record<
   GlobeVariant,
-  { continents: string; atmosphere: string; route: string; light: string }
+  { nightTint: string; atmosphere: string; route: string; light: string }
 > = {
-  amber: { continents: "#f5be66", atmosphere: "#f0a93b", route: "#f5be66", light: "#f8d28a" },
-  skyway: { continents: "#7ec1ee", atmosphere: "#4fa3e3", route: "#7ec1ee", light: "#a9d4f5" },
-  dual: { continents: "#f5be66", atmosphere: "#4fa3e3", route: "#7ec1ee", light: "#f8d28a" },
+  amber: { nightTint: "#f5be66", atmosphere: "#f0a93b", route: "#f5be66", light: "#f8d28a" },
+  skyway: { nightTint: "#a9d4f5", atmosphere: "#4fa3e3", route: "#7ec1ee", light: "#a9d4f5" },
+  dual: { nightTint: "#f5be66", atmosphere: "#4fa3e3", route: "#7ec1ee", light: "#f8d28a" },
 };
 
 function RotatingGroup({ spin, variant }: { spin: boolean; variant: GlobeVariant }) {
@@ -32,9 +32,11 @@ function RotatingGroup({ spin, variant }: { spin: boolean; variant: GlobeVariant
 
   return (
     <group ref={groupRef} rotation={[0.15, -0.6, 0.12]}>
-      <BaseSphere />
-      <ContinentPoints color={palette.continents} />
-      <Atmosphere color={palette.atmosphere} intensity={0.85} />
+      <Suspense fallback={null}>
+        <BaseSphere nightTint={palette.nightTint} />
+        <CloudLayer />
+      </Suspense>
+      <Atmosphere color={palette.atmosphere} intensity={0.75} />
       <FlightArcs routeColor={palette.route} lightColor={palette.light} />
     </group>
   );
@@ -55,9 +57,8 @@ export function GlobeScene({
       gl={{ alpha: true, antialias: true }}
       dpr={[1, 1.75]}
     >
-      <ambientLight intensity={0.65} />
-      <directionalLight position={[4, 2, 3]} intensity={1.1} color="#eaf0fa" />
-      <pointLight position={[-3, -2, -3]} intensity={0.3} color="#4fa3e3" />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[4, 2, 3]} intensity={0.4} color="#eaf0fa" />
       <RotatingGroup spin={spin} variant={variant} />
       {interactive && (
         <OrbitControls
