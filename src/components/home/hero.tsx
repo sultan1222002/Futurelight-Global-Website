@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Compass } from "lucide-react";
+import { Globe } from "@/components/globe/globe";
 
 export function Hero() {
   return (
@@ -16,12 +17,13 @@ export function Hero() {
             backgroundRepeat: "repeat",
           }}
         />
-        {/* Beacon sweep */}
-        <div className="absolute left-1/2 top-[38%] h-[520px] w-[3px] origin-top -translate-x-1/2 animate-sweep bg-gradient-to-b from-beacon-300/90 via-beacon-400/25 to-transparent blur-[1px]" />
-        <div className="absolute left-1/2 top-[38%] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-beacon-300 shadow-[0_0_60px_18px_theme(colors.beacon.400/0.55)]" />
-        {/* Harbor horizon */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-harbor-950 to-transparent" />
       </div>
+
+      {/* Globe — anchored low, partially cropped by the section edge */}
+      <div className="pointer-events-none absolute left-1/2 top-[46%] aspect-square w-[140vw] max-w-[1100px] -translate-x-1/2 sm:w-[110vw] lg:w-[900px]">
+        <Globe />
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-harbor-950 to-transparent" />
 
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-28 pt-20 text-center lg:pt-32">
         <span className="inline-flex items-center gap-2 rounded-full border border-harbor-600 bg-harbor-900/60 px-4 py-1.5 text-xs font-medium text-beacon-300">
