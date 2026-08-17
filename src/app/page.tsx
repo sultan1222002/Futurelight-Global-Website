@@ -12,9 +12,9 @@ export default function Home() {
     <>
       <Hero />
       <StatsBar />
+      <ServicesGrid />
       <ProcessPreview />
       <FeaturedDestinations />
-      <ServicesGrid />
       <TestPrepBanner />
       <Testimonials />
       <Newsletter />

@@ -16,7 +16,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-full bg-gradient-to-r from-harbor-950 via-harbor-950/80 to-transparent lg:w-3/5" />
       <div className="pointer-events-none absolute right-[-9rem] top-20 size-[32rem] rounded-full border border-skyway-500/15 sm:size-[44rem]" />
       <div className="pointer-events-none absolute right-[-3rem] top-48 size-[23rem] rounded-full border border-beacon-500/10" />
-      <div className="pointer-events-none absolute bottom-[-12rem] right-[-7rem] z-0 size-[38rem] opacity-90 sm:size-[52rem] lg:right-[-9rem]">
+      <div className="pointer-events-none absolute right-[-14rem] top-48 z-0 size-[32rem] opacity-90 sm:right-[-11rem] sm:top-40 sm:size-[42rem] lg:bottom-[-12rem] lg:right-[-9rem] lg:top-auto lg:size-[52rem]">
         <Globe />
       </div>
       <HudReadout />

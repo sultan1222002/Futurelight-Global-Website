@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-harbor-950: #04070e;
-  --color-harbor-900: #070c1b;
-  --color-harbor-800: #0d1730;
-  --color-harbor-700: #142145;
-  --color-harbor-600: #1c2f5c;
-  --color-harbor-500: #2a4478;
-  --color-beacon-300: #f8d28a;
-  --color-beacon-400: #f5be66;
-  --color-beacon-500: #f0a93b;
-  --color-beacon-600: #d68e1f;
-  --color-skyway-300: #a9d4f5;
-  --color-skyway-400: #7ec1ee;
-  --color-skyway-500: #4fa3e3;
-  --color-mist-50: #f7faff;
-  --color-mist-100: #eaf0fa;
-  --color-mist-200: #d8e2f2;
-  --color-mist-300: #c3d0e8;
-  --color-mist-400: #9fb0c9;
-  --color-mist-600: #64759a;
+  --color-harbor-950: #030609;
+  --color-harbor-900: #050b12;
+  --color-harbor-800: #07111a;
+  --color-harbor-700: #10202d;
+  --color-harbor-600: #173448;
+  --color-harbor-500: #24516a;
+  --color-beacon-300: #ffb36e;
+  --color-beacon-400: #ff9638;
+  --color-beacon-500: #ff7a00;
+  --color-beacon-600: #c85f00;
+  --color-skyway-300: #8cecff;
+  --color-skyway-400: #00d9ff;
+  --color-skyway-500: #178bff;
+  --color-mist-50: #f5f7fa;
+  --color-mist-100: #e4e9ef;
+  --color-mist-200: #cbd5df;
+  --color-mist-300: #b4c0cb;
+  --color-mist-400: #9ca8b5;
+  --color-mist-600: #647381;
   --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
