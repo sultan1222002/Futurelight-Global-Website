@@ -30,7 +30,7 @@ export function ServicesGrid() {
       <div className="mx-auto max-w-2xl text-center">
         <p className="text-sm font-semibold uppercase tracking-wide text-skyway-400">What we do</p>
         <h2 className="mt-3 font-display text-3xl font-semibold text-mist-50 sm:text-4xl">
-          End-to-End Support, Every Step of the Way
+          Everything You Need, In One Place
         </h2>
       </div>
 

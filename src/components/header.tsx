@@ -28,7 +28,7 @@ export function Header() {
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
           ? "border-b border-harbor-700/60 bg-harbor-950/90 py-3 backdrop-blur-md"
-          : "bg-transparent py-5"
+          : "bg-harbor-950/70 py-3 backdrop-blur-md"
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 lg:px-6">

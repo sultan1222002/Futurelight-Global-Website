@@ -1,43 +1,14 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Globe2 } from "lucide-react";
 import { destinations } from "@/lib/data";
+import { Globe } from "@/components/globe/globe";
 
 export function FeaturedDestinations() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-24 lg:px-8">
-      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-skyway-400">Where you could go</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-mist-50 sm:text-4xl">
-            Popular Study Destinations
-          </h2>
-        </div>
-        <Link
-          href="/study-destinations"
-          className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-beacon-400 hover:text-beacon-300"
-        >
-          See All Destinations <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-
-      <div className="mt-12 flex gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-4 lg:overflow-visible">
-        {destinations.map((d) => (
-          <Link
-            key={d.country}
-            href={`/study-destinations/${d.slug}`}
-            className="group w-64 shrink-0 rounded-2xl border border-harbor-800 bg-harbor-900/40 p-6 transition-colors hover:border-beacon-500/50 lg:w-auto"
-          >
-            <span className="text-3xl">{d.flag}</span>
-            <h3 className="mt-3 font-display text-lg font-semibold text-mist-50">{d.country}</h3>
-            <ul className="mt-3 space-y-1 text-sm text-mist-400">
-              <li>{d.fact1}</li>
-              <li>{d.fact2}</li>
-            </ul>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-skyway-400 opacity-0 transition-opacity group-hover:opacity-100">
-              Explore <ArrowRight className="h-3.5 w-3.5" />
-            </span>
-          </Link>
-        ))}
+    <section className="overflow-hidden border-b border-harbor-700 bg-harbor-900/30 py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 lg:px-10"><div className="mx-auto max-w-2xl text-center"><p className="font-mono text-[10px] uppercase tracking-[0.24em] text-skyway-400">Study destinations</p><h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-mist-50 sm:text-6xl">The world is your campus.</h2><p className="mt-5 text-sm leading-6 text-mist-400">Explore destinations that match your academic goals, career plans and budget.</p></div>
+        <div className="mt-16 grid items-center gap-8 lg:grid-cols-[0.65fr_1fr_0.8fr]"><div className="border border-skyway-400/20 bg-harbor-900/70 p-6 backdrop-blur-md"><div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-skyway-400"><Globe2 className="h-4 w-4" /> Northern Europe</div><p className="mt-5 text-sm leading-6 text-mist-400">High-quality education, strong student support and globally respected institutions.</p><div className="mt-6 flex flex-wrap gap-2">{destinations.slice(0, 5).map((destination) => <Link key={destination.country} href={`/study-destinations/${destination.slug}`} className="border border-harbor-700 px-3 py-2 text-xs text-mist-300 transition-colors hover:border-skyway-400 hover:text-skyway-300">{destination.country}</Link>)}</div><div className="mt-7 border-t border-harbor-700 pt-5 font-mono text-[10px] uppercase tracking-wider text-mist-600">Visa success rate <span className="float-right text-skyway-400">Demo interface</span></div></div><div className="relative min-h-[22rem] lg:min-h-[32rem]"><div className="absolute inset-0"><Globe /></div><div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-[10px] uppercase tracking-[0.2em] text-skyway-300">Global network online</div></div><div className="border border-skyway-400/20 bg-harbor-900/70 p-6 backdrop-blur-md"><p className="font-mono text-[10px] uppercase tracking-[0.18em] text-beacon-300">Target locked</p><h3 className="mt-3 font-display text-5xl font-semibold text-skyway-400">Sweden</h3><div className="mt-5 grid grid-cols-2 gap-3"><div className="border border-harbor-700 p-3"><p className="text-sm text-mist-100">18 Months</p><p className="mt-1 text-[10px] uppercase text-mist-600">Post-study visa</p></div><div className="border border-harbor-700 p-3"><p className="text-sm text-mist-100">English</p><p className="mt-1 text-[10px] uppercase text-mist-600">Primary instruction</p></div></div><ul className="mt-5 flex flex-col gap-3 border-t border-harbor-700 pt-5 text-sm text-mist-300"><li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-skyway-400" /> Innovative academic environment</li><li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-skyway-400" /> International student culture</li></ul><Link href="/study-destinations/sweden" className="mt-6 inline-flex w-full items-center justify-center gap-2 border border-skyway-400/60 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-mist-50 transition-colors hover:bg-skyway-400 hover:text-harbor-950">Explore Sweden <ArrowUpRight className="h-4 w-4" /></Link></div></div>
+        <div className="mt-12 flex gap-3 overflow-x-auto pb-2">{destinations.map((destination) => <Link key={destination.country} href={`/study-destinations/${destination.slug}`} className="min-w-36 border border-harbor-700 bg-harbor-950/70 p-4 transition-colors hover:border-skyway-400"><span className="text-2xl">{destination.flag}</span><p className="mt-3 text-sm text-mist-200">{destination.country}</p></Link>)}</div>
       </div>
     </section>
   );
