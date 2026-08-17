@@ -1,96 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Night Harbor — deep navy base */
   --color-harbor-950: #04070e;
   --color-harbor-900: #070c1b;
   --color-harbor-800: #0d1730;
   --color-harbor-700: #142145;
   --color-harbor-600: #1c2f5c;
   --color-harbor-500: #2a4478;
-
-  /* Beacon — amber-gold accent (the "light" in FutureLight) */
   --color-beacon-300: #f8d28a;
   --color-beacon-400: #f5be66;
   --color-beacon-500: #f0a93b;
   --color-beacon-600: #d68e1f;
-  --color-beacon-700: #a86b12;
-
-  /* Skyway — cool blue accent for secondary emphasis */
   --color-skyway-300: #a9d4f5;
   --color-skyway-400: #7ec1ee;
   --color-skyway-500: #4fa3e3;
-  --color-skyway-600: #2e7fc4;
-
-  /* Mist — text on dark surfaces */
   --color-mist-50: #f7faff;
   --color-mist-100: #eaf0fa;
+  --color-mist-200: #d8e2f2;
   --color-mist-300: #c3d0e8;
   --color-mist-400: #9fb0c9;
   --color-mist-600: #64759a;
-
   --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-
-  --animate-drift: drift 60s linear infinite;
-  --animate-sweep: sweep 8s ease-in-out infinite;
-  --animate-rise: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-1000px);
-  }
-}
-
-@keyframes sweep {
-  0%,
-  100% {
-    transform: rotate(-8deg);
-    opacity: 0.55;
-  }
-  50% {
-    transform: rotate(8deg);
-    opacity: 0.9;
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--color-harbor-950);
-  color: var(--color-mist-100);
-  font-family: var(--font-body);
-}
-
-::selection {
-  background: var(--color-beacon-500);
-  color: var(--color-harbor-950);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+html { scroll-behavior: smooth; background: var(--color-harbor-950); }
+body { background: var(--color-harbor-950); color: var(--color-mist-100); font-family: var(--font-body); }
+::selection { background: var(--color-beacon-500); color: var(--color-harbor-950); }
+:focus-visible { outline: 2px solid var(--color-beacon-400); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

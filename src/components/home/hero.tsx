@@ -1,73 +1,52 @@
 import Link from "next/link";
-import { ArrowRight, Globe2 } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Globe2 } from "lucide-react";
 import { Globe } from "@/components/globe/globe";
-import { OrbitRings, HudReadout } from "./hero-hud";
+import { HudReadout } from "./hero-hud";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[85vh] overflow-hidden">
-      {/* Starfield / nebula backdrop, local to the hero content area */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_0%,theme(colors.harbor.800),theme(colors.harbor.950)_70%)]" />
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage:
-              "radial-gradient(1.5px 1.5px at 20px 30px, white, transparent), radial-gradient(1px 1px at 90px 80px, white, transparent), radial-gradient(1.5px 1.5px at 160px 40px, white, transparent), radial-gradient(1px 1px at 230px 120px, white, transparent), radial-gradient(1.5px 1.5px at 310px 60px, white, transparent), radial-gradient(1px 1px at 380px 20px, white, transparent)",
-            backgroundSize: "420px 160px",
-            backgroundRepeat: "repeat",
-          }}
-        />
-      </div>
+    <section className="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden border-b border-harbor-800 bg-harbor-950">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_70%_0%,theme(colors.harbor.800/0.8),transparent_68%)]" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,theme(colors.harbor.950),transparent_60%)] lg:w-2/3" />
+      <div className="pointer-events-none absolute -right-24 top-20 h-[30rem] w-[30rem] rounded-full border border-beacon-500/10 blur-[1px]" />
+      <div className="pointer-events-none absolute -right-8 top-52 h-[20rem] w-[20rem] rounded-full border border-skyway-500/10" />
 
-      <HudReadout />
-
-      {/* Globe */}
-      <div className="pointer-events-none absolute left-1/2 top-[54%] aspect-square w-[150vw] max-w-[1200px] -translate-x-1/2 sm:w-[120vw] lg:w-[980px]">
+      <div className="pointer-events-none absolute bottom-[-18rem] right-[-6rem] z-0 size-[42rem] opacity-80 sm:size-[52rem] lg:right-[-10rem]">
         <Globe />
       </div>
+      <HudReadout />
 
-      <OrbitRings />
-
-      {/* Legibility scrim behind the headline */}
-      <div className="pointer-events-none absolute left-1/2 top-[36%] h-[340px] w-[110%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,theme(colors.harbor.950/0.75),transparent_72%)]" />
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-harbor-950 via-harbor-950/40 to-transparent" />
-
-      {/* Content */}
-      <div className="relative flex min-h-[85vh] flex-col items-center justify-between px-5 pb-10 pt-16 text-center sm:pt-20">
-        <div className="flex flex-1 flex-col items-center justify-center">
-          <h1 className="font-display text-5xl font-bold leading-[0.95] tracking-tight text-mist-50 drop-shadow-[0_4px_30px_rgba(4,7,14,0.9)] sm:text-6xl lg:text-7xl">
-            Your Future,
-            <span className="block bg-gradient-to-b from-beacon-300 to-beacon-500 bg-clip-text text-transparent">
-              Our Guidance.
-            </span>
-          </h1>
-          <p className="mt-6 max-w-xl text-balance text-base text-mist-300 drop-shadow-[0_2px_12px_rgba(4,7,14,0.9)] sm:text-lg">
-            Personalised, ethical, and transparent study-abroad counselling —
-            charting the course from Bangladesh to your European future.
-          </p>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl flex-col justify-between px-5 pb-8 pt-14 lg:px-10 lg:pb-12 lg:pt-20">
+        <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-beacon-400">
+          <span className="size-2 rounded-full bg-beacon-400" />
+          Bangladesh / Europe / The world
         </div>
 
-        <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <div className="hidden items-center gap-2 rounded-full border border-harbor-600/80 bg-harbor-900/70 px-4 py-2.5 backdrop-blur-sm sm:flex">
-            <Globe2 className="h-4 w-4 text-beacon-400" />
-            <span className="text-xs font-medium text-mist-300">20+ Countries</span>
+        <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <div className="max-w-4xl">
+            <p className="mb-5 max-w-xs text-sm leading-6 text-mist-400">The distance between where you are and where you&apos;re going is a plan.</p>
+            <h1 className="font-display text-[clamp(3.5rem,10vw,9rem)] font-semibold leading-[0.84] tracking-[-0.07em] text-mist-50">
+              Your future
+              <span className="block text-beacon-400">starts here.</span>
+            </h1>
           </div>
+          <div className="border-l border-beacon-500/50 pl-5 lg:mb-2">
+            <p className="text-pretty text-base leading-7 text-mist-300">Personalised, ethical guidance for students building a life beyond borders.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/book-counselling" className="group inline-flex items-center gap-2 bg-beacon-500 px-5 py-3 text-sm font-semibold text-harbor-950 transition-colors hover:bg-beacon-300">
+                Book counselling <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link href="/study-destinations" aria-label="Explore study destinations" className="inline-flex items-center justify-center border border-harbor-600 px-4 py-3 text-mist-100 transition-colors hover:border-beacon-400 hover:text-beacon-300">
+                <Globe2 className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
 
-          <Link
-            href="/book-counselling"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-beacon-500 px-7 py-3.5 text-sm font-semibold text-harbor-950 transition-colors hover:bg-beacon-400"
-          >
-            Book Free Counselling
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-          <Link
-            href="/study-destinations"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-harbor-600/80 bg-harbor-900/70 px-7 py-3.5 text-sm font-semibold text-mist-100 backdrop-blur-sm transition-colors hover:border-skyway-400 hover:text-skyway-300"
-          >
-            Explore Destinations
-          </Link>
+        <div className="flex items-end justify-between border-t border-harbor-700/70 pt-5 text-xs uppercase tracking-[0.18em] text-mist-600">
+          <span>FutureLight Global</span>
+          <span className="hidden items-center gap-2 sm:flex"><ArrowDownRight className="h-4 w-4 text-beacon-400" /> Scroll to explore</span>
+          <span>01 / 04</span>
         </div>
       </div>
     </section>
